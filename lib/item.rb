@@ -10,6 +10,10 @@ class Item
   attr_reader :key
 
   def initialize(key)
+    unless CATALOG.key?(key)
+      raise ArgumentError, "item should be one the following types: #{CATALOG.keys}"
+    end
+
     @key = key
     @accounted_for = false
   end

@@ -1,6 +1,12 @@
 RSpec.describe Item do
   subject { described_class.new(:ipd) }
 
+  describe ".new" do
+    it "raises an error for an unknown item type" do
+      expect { described_class.new(:non_existent) }.to raise_error(ArgumentError)
+    end
+  end
+
   describe "#name" do
     it { is_expected.to have_attributes(name: 'Super iPad') }
   end
