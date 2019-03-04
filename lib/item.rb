@@ -6,6 +6,7 @@ class Item
     vga: 'VGA adapter',
   }.freeze
 
+  attr_accessor :price, :default_price
   attr_reader :key
 
   def initialize(key)
@@ -23,5 +24,9 @@ class Item
 
   def accounted_for!
     @accounted_for = true
+  end
+
+  def ==(other)
+    other.is_a?(self.class) && key == other.key
   end
 end
