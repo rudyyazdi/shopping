@@ -26,7 +26,6 @@ class BasePricingRules
       end
     end
     items.not_accounted_for.each { |i| i.price = i.default_price }
-    items
   end
 
   private

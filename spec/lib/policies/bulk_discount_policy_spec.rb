@@ -10,16 +10,15 @@ RSpec.describe BulkDiscountPolicy do
 
   # in this test if you buy three atvs you'll get them for $70 instead of $100
   subject { described_class.new(item_key: :atv, minimum_quantity: 3, discount_price: 70_00) }
-  let(:results) { subject.apply(item_array) }
+  before { subject.apply(item_array) }
 
   describe "#apply" do
     context "when the sales requirement is not met" do
       let(:item_array) { ItemArray.new([ipd_1, mbp_1, atv_1, vga_1].shuffle) }
 
       it "doesn't do anything" do
-        expect(results.size).to eq 4
-        expect(results.map(&:accounted_for?)).to all be_falsey
-        expect(results.map(&:price)).to all be_nil
+        expect(item_array.map(&:accounted_for?)).to all be_falsey
+        expect(item_array.map(&:price)).to all be_nil
       end
     end
 
@@ -27,10 +26,9 @@ RSpec.describe BulkDiscountPolicy do
       let(:item_array) { ItemArray.new([atv_1, atv_2, atv_3, vga_1].shuffle) }
 
       it "applies the discount" do
-        expect(results.size).to eq 4
-        expect(results.filter(&:accounted_for?).size).to eq 3
-        expect(results.filter { |i| i.price == 70_00 }.size).to eq 3
-        expect(results.filter { |i| i.price.nil? }.size).to eq 1
+        expect(item_array.filter(&:accounted_for?).size).to eq 3
+        expect(item_array.filter { |i| i.price == 70_00 }.size).to eq 3
+        expect(item_array.filter { |i| i.price.nil? }.size).to eq 1
       end
     end
 
@@ -38,10 +36,9 @@ RSpec.describe BulkDiscountPolicy do
       let(:item_array) { ItemArray.new([atv_1, atv_2, atv_3, vga_1, atv_4, mbp_1].shuffle) }
 
       it "applies the discount" do
-        expect(results.size).to eq 6
-        expect(results.filter(&:accounted_for?).size).to eq 4
-        expect(results.filter { |i| i.price == 70_00 }.size).to eq 4
-        expect(results.filter { |i| i.price.nil? }.size).to eq 2
+        expect(item_array.filter(&:accounted_for?).size).to eq 4
+        expect(item_array.filter { |i| i.price == 70_00 }.size).to eq 4
+        expect(item_array.filter { |i| i.price.nil? }.size).to eq 2
       end
     end
   end

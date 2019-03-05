@@ -16,7 +16,6 @@ class FreeItemPolicy
       # free item is free!
       free_items.each { |i| i.price = 0 }
     end
-    item_array
   end
 
   private

@@ -12,6 +12,5 @@ class BulkDiscountPolicy
     if discount_items.size >= minimum_quantity
       discount_items.each { |i| i.price = discount_price }
     end
-    item_array
   end
 end
