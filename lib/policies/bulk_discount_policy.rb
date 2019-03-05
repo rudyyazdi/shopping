@@ -8,13 +8,10 @@ class BulkDiscountPolicy
   end
 
   def apply(item_array)
-    discount_items = item_array.select { |i| i.key == item_key }
-    non_discount_items = item_array.reject { |i| i.key == item_key }
+    discount_items = item_array.not_accounted_for.select { |i| i.key == item_key }
     if discount_items.size >= minimum_quantity
-      discount_items = discount_items.each { |i| i.price = discount_price }
-      ItemArray.new(discount_items + non_discount_items)
-    else
-      item_array
+      discount_items.each { |i| i.price = discount_price }
     end
+    item_array
   end
 end

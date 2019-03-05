@@ -18,7 +18,12 @@ class BasePricingRules
   def account_for(items)
     items.each { |i| i.default_price = pricing[i.key] }
     policies.each do |policy|
-      items = policy.apply(items)
+      # this loop ensures that the policy is applied to the items as many times as necessary
+      while
+        accounted_for_size = items.accounted_for.size
+        policy.apply(items)
+        break if accounted_for_size == items.accounted_for.size
+      end
     end
     items.not_accounted_for.each { |i| i.price = i.default_price }
     items
