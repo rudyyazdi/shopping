@@ -1,9 +1,14 @@
 class Item
+  IPD = :ipd
+  MBP = :mbp
+  ATV = :atv
+  VGA = :vga
+
   CATALOG = {
-    ipd: 'Super iPad',
-    mbp: 'MacBook Pro',
-    atv: 'Apple TV',
-    vga: 'VGA adapter',
+    IPD => 'Super iPad',
+    MBP => 'MacBook Pro',
+    ATV => 'Apple TV',
+    VGA => 'VGA adapter',
   }.freeze
 
   attr_accessor :price, :default_price
