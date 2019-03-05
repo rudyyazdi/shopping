@@ -1,4 +1,4 @@
-RSpec.describe DefaultPricingRules do
+RSpec.describe DefaultPricingRule do
   let(:atv_1) { Item.new(:atv) }
   let(:atv_2) { Item.new(:atv) }
   let(:atv_3) { Item.new(:atv) }

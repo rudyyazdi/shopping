@@ -1,7 +1,7 @@
 require 'policies/free_item_policy'
 require 'policies/bulk_discount_policy'
 
-class DefaultPricingRules < BasePricingRules
+class DefaultPricingRule < BasePricingRule
   add_default_price Item::IPD, 549_99
   add_default_price Item::MBP, 1_399_99
   add_default_price Item::ATV, 109_50

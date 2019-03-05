@@ -10,7 +10,7 @@ RSpec.describe Checkout do
   let(:atv_3) { Item.new(:atv) }
   let(:vga_1) { Item.new(:vga) }
 
-  subject { described_class.new(DefaultPricingRules.new) }
+  subject { described_class.new(DefaultPricingRule.new) }
 
   describe "#total" do
     context "SKUs Scanned: atv, atv, atv, vga Total expected: $249.00" do

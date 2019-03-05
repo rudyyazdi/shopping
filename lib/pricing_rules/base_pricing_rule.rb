@@ -1,6 +1,6 @@
 require 'item'
 
-class BasePricingRules
+class BasePricingRule
   class << self
     attr_reader :pricing, :policies
 

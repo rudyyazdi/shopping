@@ -5,7 +5,7 @@
 
 ## notes:
 
-- The stipulated pricing rules are implemented in `DefaultPricingRules`. In case the pricing rules change, another subclass of BasePricingRules can be created and populated with the new default prices and policies.
+- The stipulated pricing rules are implemented in `DefaultPricingRule`. In case the pricing rules change, another subclass of BasePricingRule can be created and populated with the new default prices and policies.
 - Policies are also extensible in a way that new policies can be added the just need to implement the `apply` method that takes a `item_array` and modifies the pricings of the items.
 - The following test scenarios are implemented as integration test in `spec/lib/checkout_spec.rb`:
   - SKUs Scanned: atv, atv, atv, vga Total expected: $249.00
