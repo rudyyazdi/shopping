@@ -6,6 +6,18 @@ RSpec.describe ItemArray do
   let(:vga) { Item.new(:vga) }
   subject { described_class.new([ipd_1, ipd_2, mbp, atv].shuffle) }
 
+  describe "#accounted_for" do
+    it "shows no item" do
+      expect(subject.accounted_for.size).to eq 0
+    end
+  end
+
+  describe "#not_accounted_for" do
+    it "shows no item" do
+      expect(subject.not_accounted_for.size).to eq 4
+    end
+  end
+
   describe "#include_all?" do
     it "returns true when the keys are exatly like the items array" do
       expect(subject.include_all?([:ipd, :ipd, :mbp, :atv].shuffle)).to be_truthy

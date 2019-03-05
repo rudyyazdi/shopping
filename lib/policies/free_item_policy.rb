@@ -10,19 +10,13 @@ class FreeItemPolicy
   def apply(item_array)
     if item_array.include_all?(required_item_keys)
       bought_items = item_array.intersection(bought_item_keys)
-      bought_items = bought_items.each do |i|
-        i.price = i.default_price
-      end
-      free_items = item_array.intersection(free_item_keys)
-      free_items = free_items.each do |i|
-        i.price = 0
-      end
-      rest_of_the_items = item_array.eject(required_item_keys)
-      [
-        bought_items,
-        free_items,
-        rest_of_the_items,
-      ].flatten
+      # bought items take the default price
+      bought_items = bought_items.each { |i| i.price = i.default_price }
+      free_items = item_array.not_accounted_for.intersection(free_item_keys)
+      # free item is free!
+      free_items = free_items.each { |i| i.price = 0 }
+      rest_of_the_items = item_array.not_accounted_for
+      ItemArray.new([bought_items, free_items, rest_of_the_items].flatten)
     else
       item_array
     end

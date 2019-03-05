@@ -18,6 +18,14 @@ class ItemArray < Array
     eject(keys).size == size - keys.size
   end
 
+  def accounted_for
+    self.class.new(select(&:accounted_for?))
+  end
+
+  def not_accounted_for
+    self.class.new(reject(&:accounted_for?))
+  end
+
   private
 
   def eject_recursive(items, keys)
