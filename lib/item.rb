@@ -20,7 +20,6 @@ class Item
     end
 
     @key = key
-    @accounted_for = false
   end
 
   def name
@@ -28,11 +27,7 @@ class Item
   end
 
   def accounted_for?
-    @accounted_for
-  end
-
-  def accounted_for!
-    @accounted_for = true
+    !@price.nil?
   end
 
   def ==(other)

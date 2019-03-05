@@ -13,7 +13,6 @@ class BulkDiscountPolicy
     if discount_items.size >= minimum_quantity
       discount_items = discount_items.each do |i|
         i.price = discount_price
-        i.accounted_for!
       end
       discount_items + non_discount_items
     else
